@@ -5,9 +5,9 @@
     const telaInicial = document.getElementById('tela-inicial');
     const telaPrincipal = document.getElementById('tela-principal');
   
-    btnIniciar.addEventListener('click', function() {
-      telaInicial.style.display = 'none'; // Esconde a tela inicial
-      telaPrincipal.style.display = 'block'; // Mostra a tela principal
-    });
+ btnIniciar.addEventListener('click', () => {
+    telaInicial.classList.remove('ativa');
+    telaPrincipal.classList.add('ativa');
   });
+});
   

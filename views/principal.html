@@ -1,39 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Jogo do Cangaço</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Jogo do Cangaço</title>
 
-  <!-- Importando fonte pixelizada -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Importando fonte pixelizada -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="/css/principal.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="/css/principal.css" />
+  </head>
+  <body>
     <!-- Tela inicial -->
     <div id="tela-inicial" class="tela ativa">
-        <div class="infoInicial">
-        <h1> Bem vindo RPG - Lenda dos Cangaceiros</h1>
+      <div class="infoInicial">
+        <h1>Bem vindo RPG - Lenda dos Cangaceiros</h1>
         <button id="btn-iniciar">Iniciar Jogo</button>
-        </div>
       </div>
-      
+    </div>
+
     <!-- Tela principal -->
-      <div id="tela-principal" class="tela">
+    <div id="tela-principal" class="tela">
+      <div id="ceu"></div>
 
-        <div id="ceu"></div>
-
-        <div id="chao">
-            <!-- Protagonista -->
-            <img src="/img/protagonista_relaxado.png" class="protagonista relaxado" alt="protagonista relaxado">
-            <img src="/img/protagonista_ataque.png" class="protagonista ataque" alt="protagonista atacando">
-            <img src="/img/protagonista_rip.png" class="protagonista morto" alt="protagonista morto">
-        </div>
-
+      <div id="chao">
+        <!-- Protagonista -->
+        <img
+          src="/img/protagonista_relaxado.png"
+          class="protagonista relaxado"
+          alt="protagonista relaxado"
+        />
+        <img
+          src="/img/protagonista_ataque.png"
+          class="protagonista ataque"
+          alt="protagonista atacando"
+        />
+        <img
+          src="/img/protagonista_rip.png"
+          class="protagonista morto"
+          alt="protagonista morto"
+        />
       </div>
-      
-
-  <script src="/js/principal.js"></script>
-</body>
+    </div>
+    <!-- Tela de transição -->
+    <div id="transicao" class="tela">
+      <div class="infoInicial">
+        <h1>Carregando...</h1>
+      </div>
+    </div>
+    <audio id="trilha-sonora" src="/audio/TrilhaSonora.mp4" loop></audio>
+    <script src="/js/principal.js"></script>
+  </body>
 </html>

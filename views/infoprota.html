@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>infoProta</title>
-    <link rel="stylesheet" href="/css/infoProta.css">
-    <link rel="stylesheet" href="/css/principal.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informações</title>
+    <link rel="stylesheet" href="/css/infoProta.css" />
+    <link rel="stylesheet" href="/css/principal.css" />
+    <link rel="shortcut icon" href="/img/image.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div id="info-geral-prota" class="tela-ativa">
+      <div class="info-geral">
+        <h2 class="info-prota">Informações do personagem</h2>
+        <ul>
+          <li>Nome:</li>
+          <li>Ocupação:</li>
+          <li>Vida:</li>
+          <li>Armadura:</li>
+          <li>Dinheiro:</li>
+          <li>Habilidade 1:</li>
+          <li>Dano Habilidade 1:</li>
+          <li>Falha Habilidade 1:</li>
+          <li>Habilidade 2:</li>
+          <li>Dano Habilidade 2:</li>
+          <li>Falha Habilidade 2:</li>
+        </ul>
+        <button class="button-continue" type="submit">Jogar</button>
+      </div>
 
-</head>
-<body>
-
-  <div id="info-geral-prota" class="tela-ativa">
-    <div class="info-geral">
-    <h2 class="info-prota">Informações do personagem</h2>
-    <ul>
-      <li>Nome: </li>
-      <li>Ocupação:</li>
-      <li>Vida:</li>
-      <li>Armadura:</li>
-      <li>Dinheiro:</li>
-      <li>Habilidade 1:</li>
-      <li>Dano Habilidade 1:</li>
-      <li>Falha Habilidade 1:</li>
-      <li>Habilidade 2:</li>
-      <li>Dano Habilidade 2:</li>
-      <li>Falha Habilidade 2:</li>
-    </ul>
-    <button class="button-continue" type="submit">Jogar</button></button>
-    </div>
-
-    
       <div id="ceu"></div>
 
-    <div id="chao">
-      <!-- Protagonista -->
-      <img src="/img/protagonista_relaxado (1).png" class="protagonista relaxado" alt="protagonista relaxado">
-      <img src="/img/protagonista_ataque (1).png" class="protagonista ataque" alt="protagonista atacando">
-      <img src="/img/protagonista_rip (1).png" class="protagonista morto" alt="protagonista morto">
+      <div id="chao">
+        <!-- Protagonista -->
+        <img
+          src="/img/protagonista_relaxado.png"
+          class="protagonista relaxado"
+          alt="protagonista relaxado"
+        />
+        <img
+          src="/img/protagonista_ataque.png"
+          class="protagonista ataque"
+          alt="protagonista atacando"
+        />
+        <img
+          src="/img/protagonista_rip.png"
+          class="protagonista morto"
+          alt="protagonista morto"
+        />
+      </div>
     </div>
-
-
-  </div>
+    <audio
+      id="trilha-sonora"
+      src="/audio/TrilhaSonora.mp4"
+      loop
+      autoplay
+    ></audio>
 
     <script src="views/dom.js"></script>
-      
-</body>
+  </body>
 </html>

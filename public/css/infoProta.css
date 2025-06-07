@@ -1,0 +1,32 @@
+#info-geral-prota {
+  background-image: url("/img/fundo_caatinga (1).png");
+  background-size: cover;           
+  background-position: center;      
+  background-repeat: no-repeat;     
+  position: relative;
+  display: flex;                    
+  flex-direction: column;
+  align-items: center;              
+  justify-content: center;          
+  min-height: 100vh;               
+}
+li {
+  margin: 7px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.info-geral {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(78, 45, 1, 0.849);
+  color: white;
+  width: 30%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

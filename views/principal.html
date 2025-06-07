@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Jogo do Cangaço</title>
 
-    <!-- Importando fonte pixelizada -->
+    <!-- Fonte pixelizada -->
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
@@ -16,7 +16,7 @@
     <!-- Tela inicial -->
     <div id="tela-inicial" class="tela ativa">
       <div class="infoInicial">
-        <h1>Bem vindo RPG - Lenda dos Cangaceiros</h1>
+        <h1>Bem-vindo RPG - Lenda dos Cangaceiros</h1>
         <button id="btn-iniciar">Iniciar Jogo</button>
       </div>
     </div>
@@ -43,14 +43,41 @@
           alt="protagonista morto"
         />
       </div>
+
+      <div class="login-container">
+        <h2>Dados do Personagem</h2>
+        <form action="/login" method="POST">
+          <label for="user">Nome</label>
+          <input
+            type="text"
+            id="user"
+            name="user"
+            placeholder="Digite o nome do seu personagem"
+            required
+          />
+
+          <label for="campo">Escolha uma ocupação:</label>
+          <select id="campo" name="campo" required>
+            <option value="nome">Cabra da peste</option>
+            <option value="email">ocupação2</option>
+            <option value="telefone">ocupação3</option>
+          </select>
+
+          <button class="button-login" type="submit">OK</button>
+        </form>
+      </div>
     </div>
+
     <!-- Tela de transição -->
     <div id="transicao" class="tela">
       <div class="infoInicial">
         <h1>Carregando...</h1>
       </div>
     </div>
+
+    <!-- Trilha sonora -->
     <audio id="trilha-sonora" src="/audio/TrilhaSonora.mp4" loop></audio>
+
     <script src="/js/principal.js"></script>
   </body>
 </html>

@@ -47,3 +47,7 @@ Github: https://github.com/d4marys
 - Artur Melo
   
 Github:  https://github.com/ArturMeloMorais
+
+- Davi Laurindo
+
+Github: https://github.com/soneylegal

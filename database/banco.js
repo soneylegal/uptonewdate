@@ -170,7 +170,7 @@ function inserir_itens1(con) {
 function inserir_personagem1(con) {
   console.log("Inserindo personagem 1...");
   const sql = `INSERT INTO personagem (id_personagem, nome, vida, dinheiro, ocupacao, armadura, velocidade, reputacao, personagem_tipo, fk_id_item, fk_id_habilidade1, fk_id_habilidade2 )
-                VALUES (1, 'Davi', 100, 0, 'Ocupação de Teste', 0, 0, 0, 'jogador', 1,NULL,NULL);`;
+                VALUES (1, 'personagem', 100, 0, 'Ocupação de Teste', 0, 0, 0, 'jogador', 1,NULL,NULL);`;
   con.query(sql, callback_erro);
 }
 

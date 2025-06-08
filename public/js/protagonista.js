@@ -1,15 +1,11 @@
 // public/js/protagonista.js
-
-// Importe Personagem se for uma classe base.
-// Certifique-se de que 'personagem.js' exporta a classe Personagem com module.exports.
 const { Personagem } = require('./personagem');
 
 class Protagonista extends Personagem {
     #reputacao;
-    #caixaItens; // Assumindo que CaixaItens será uma instância da classe CaixaItens
+    #caixaItens;
 
     constructor(nome, ocupacao, vida, armadura, velocidade, dinheiro, habilidade1, habilidade2, reputacao = 0, caixaItens = null) {
-        // Chama o construtor da classe base (Personagem)
         super(nome, ocupacao, vida, armadura, velocidade, dinheiro, habilidade1, habilidade2);
         this.#reputacao = reputacao;
         this.#caixaItens = caixaItens;
@@ -33,5 +29,4 @@ class Protagonista extends Personagem {
     // }
 }
 
-// Exporta a classe Protagonista para que possa ser usada em outros arquivos Node.js (como app.js)
 module.exports = { Protagonista };

@@ -32,6 +32,19 @@ li {
   transform: translate(-50%, -50%);
 }
 
+#protagonista {
+  position: absolute;
+  /* bottom: 20%; */
+  /* left: 4%; */
+  width: 260px;
+  height: auto;
+  display: none;
+}
+#protagonista.relaxado {
+  display: none;
+}
+
+
 .button-continue {
   background-color: #6b3400; /* Verde */
   color: white;

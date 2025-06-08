@@ -51,7 +51,7 @@ class PersonagemFrontend {
     get habilidade2() { return this.#habilidade2; }
 
     set vida(novaVida) {
-        if (novaVida < 0) {
+        if (novaVida <= 0) {
             this.#vida = 0;
             if (this.#onDeathCallback) this.#onDeathCallback();
         } else {

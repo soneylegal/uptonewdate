@@ -2,17 +2,24 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
+
     <title>Informações</title>
+
     <link rel="stylesheet" href="/css/infoProta.css" />
+
     <link rel="stylesheet" href="/css/principal.css" />
+
     <link rel="shortcut icon" href="/img/image.png" type="image/x-icon" />
   </head>
+
   <body>
     <div id="menuInfo">
       <nav id="navMenu" aria-label="Menu de informações">
         <select id="campo" name="campo" required>
           <option value="inicio"><h4 id="Menu">Menu</h4></option>
+
           <option value="caixa">📦 Caixa de Itens</option>
+
           <option value="dinheiro">💰 Dinheiro</option>
         </select>
       </nav>
@@ -21,34 +28,48 @@
     <div id="info-geral-prota" class="tela-ativa">
       <div class="info-geral">
         <h2 class="info-prota">Informações do personagem</h2>
+
         <ul>
           <li>Nome: <%= prota.nome %></li>
+
           <li>Ocupação: <%= prota.ocupacao %></li>
+
           <li id="vida-display">Vida: <%= prota.vida %></li>
+
           <li>Armadura: <%= prota.armadura %></li>
+
           <li>Dinheiro: <%= prota.dinheiro %></li>
+
           <li>Habilidade 1: <%= prota.habilidade1.nome %></li>
+
           <li>Dano Habilidade 1: <%= prota.habilidade1.dano %></li>
+
           <li>Falha Habilidade 1: <%= prota.habilidade1.falha %></li>
+
           <li>Habilidade 2: <%= prota.habilidade2.nome %></li>
+
           <li>Dano Habilidade 2: <%= prota.habilidade2.dano %></li>
+
           <li>Falha Habilidade 2: <%= prota.habilidade2.falha %></li>
         </ul>
         <button class="button-continue" id="jogar-btn">Jogar</button>
       </div>
 
       <div id="ceu"></div>
+
       <div id="chao">
         <img
           src="/img/protagonista_relaxado.png"
           class="protagonista relaxado"
           alt="protagonista relaxado"
         />
+
         <img
           src="/img/protagonista_ataque.png"
           class="protagonista ataque"
           alt="protagonista atacando"
         />
+
         <img
           src="/img/protagonista_rip.png"
           class="protagonista morto"
@@ -57,14 +78,16 @@
       </div>
     </div>
 
-    <div id="tela-morte" class="oculta">
+    <div id="tela-morte" class="tela">
       <div class="conteudo-morte">
         <h1>Você Morreu!</h1>
+
         <p>Sua jornada chegou ao fim.</p>
         <button id="reiniciar-btn">Tentar Novamente</button>
         <button id="menu-principal-btn">Menu Principal</button>
       </div>
     </div>
+
     <audio
       id="trilha-sonora"
       src="/audio/TrilhaSonora.mp4"
@@ -73,8 +96,10 @@
     ></audio>
 
     <script>
-      // const prota = <%- JSON.stringify(prota) %>;
+      // Torna o objeto 'prota' (vindo do backend EJS) disponível globalmente para infoProta.js
+      const prota = <%- JSON.stringify(prota) %>;
     </script>
-    <script src="/js/script.js"></script>
+
+    <script src="/js/infoProta.js"></script>
   </body>
 </html>

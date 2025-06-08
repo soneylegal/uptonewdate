@@ -41,20 +41,24 @@ function getDbConnection(callback) {
   });
 }
 
-// Rota para página principal
+// Rota para página principal (tela inicial + tela de login)
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "principal.html"));
 });
 
 // Rota para login e criação/carregamento do personagem
+// ... (código existente do app.js)
+
+// Rota para login e criação/carregamento do personagem
 app.post("/login", (req, res) => {
-  const { user, campo } = req.body;
+  const { user, campo } = req.body; // Captura os dados do formulário
 
   getDbConnection((err, con) => {
     if (err) {
       return res.status(500).send('Erro ao conectar ao banco de dados.');
     }
 
+    // Tenta buscar o protagonista com ID 1 no banco (se você estiver usando um ID fixo para teste)
     const sql = `
             SELECT p.id_personagem, p.nome, p.ocupacao, p.vida, p.armadura, p.dinheiro,
                    h1.nome_hab AS habilidade1_nome, h1.dano AS habilidade1_dano, h1.falha AS habilidade1_falha,
@@ -62,7 +66,7 @@ app.post("/login", (req, res) => {
             FROM personagem p
             LEFT JOIN habilidade h1 ON p.fk_id_habilidade1 = h1.id_habilidade
             LEFT JOIN habilidade h2 ON p.fk_id_habilidade2 = h2.id_habilidade
-            WHERE p.id_personagem = 1;
+            WHERE p.id_personagem = 1; -- Assumindo que você sempre busca/atualiza o ID 1 para este teste
         `;
 
     con.query(sql, (queryErr, results) => {
@@ -75,11 +79,12 @@ app.post("/login", (req, res) => {
 
       let protaData;
       if (results && results.length > 0) {
+        // Se o protagonista com ID 1 existe no banco, usa os dados do banco
         const row = results[0];
         protaData = {
           nome: row.nome,
           ocupacao: row.ocupacao,
-          vida: row.vida !== null ? row.vida : 160,
+          vida: row.vida !== null ? row.vida : 160, // Usa vida do banco, ou 160 como padrão
           armadura: row.armadura,
           dinheiro: row.dinheiro,
           habilidade1: {
@@ -95,17 +100,29 @@ app.post("/login", (req, res) => {
         };
         console.log("Protagonista carregado do DB:", protaData.nome, "Vida:", protaData.vida);
 
+        // Opcional: Se quiser atualizar o nome e ocupação do banco com os do formulário
+        // Você precisaria de um UPDATE SQL aqui. Por agora, vamos garantir que o EJS
+        // use os dados do formulário SE NÃO HOUVER DADOS DO BANCO.
+        // Mas, se o protagonista ID 1 já existe, ele usará os dados do banco.
+        // Para simplificar para este teste, vamos garantir que os valores do formulário
+        // sejam usados caso o protagonista não seja encontrado no DB.
+
       } else {
-        console.warn("Protagonista com ID 1 não encontrado no DB. Usando dados padrão.");
+        // Se o protagonista com ID 1 NÃO existe no banco, cria um NOVO com os dados do formulário
+        console.warn("Protagonista com ID 1 não encontrado no DB. Criando novo com dados do formulário.");
         protaData = {
-          nome: user || "Cangaceiro",
-          ocupacao: campo || "Cabra da pexte",
+          nome: user || "Cangaceiro", // Usa o nome do formulário, ou "Cangaceiro" como fallback
+          ocupacao: campo || "Cabra da pexte", // Usa a ocupação do formulário, ou "Cabra da pexte" como fallback
           vida: 160,
           armadura: 10,
           dinheiro: 50,
           habilidade1: { nome: "Soco", dano: 15, falha: 2 },
           habilidade2: { nome: "Peixeira", dano: 30, falha: 4 }
         };
+
+        // Opcional: Inserir este novo protagonista no banco de dados.
+        // Para este teste, não vamos inserir para não complicar, apenas garantindo que
+        // os dados do formulário sejam exibidos. Se você quiser persistir, precisaria de uma query INSERT aqui.
       }
 
       res.render("infoprota", { prota: protaData });
@@ -115,7 +132,7 @@ app.post("/login", (req, res) => {
 
 app.post('/api/atualizar-vida-protagonista', (req, res) => {
   const { vidaAtual } = req.body;
-  const protagonistaId = 1;
+  const protagonistaId = 1; // Mantendo fixo por enquanto
 
   if (typeof vidaAtual === 'undefined' || vidaAtual < 0) {
     return res.status(400).json({ message: 'Vida inválida fornecida.' });

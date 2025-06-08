@@ -2,19 +2,20 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
+
     <title>Jogo do Cangaço</title>
 
-    <!-- Fonte pixelizada -->
     <link
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
+
     <link rel="shortcut icon" href="/img/image.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="/css/principal.css" />
   </head>
+
   <body>
-    <!-- Tela inicial -->
     <div id="tela-inicial" class="tela ativa">
       <div class="infoInicial">
         <h1 id="titulo">Bem-vindo RPG - Lenda dos Cangaceiros</h1>
@@ -22,22 +23,22 @@
       </div>
     </div>
 
-    <!-- Tela principal -->
     <div id="tela-principal" class="tela">
       <div id="ceu"></div>
 
       <div id="chao">
-        <!-- Protagonista -->
         <img
           src="/img/protagonista_relaxado.png"
           class="protagonista relaxado"
           alt="protagonista relaxado"
         />
+
         <img
           src="/img/protagonista_ataque.png"
           class="protagonista ataque"
           alt="protagonista atacando"
         />
+
         <img
           src="/img/protagonista_rip.png"
           class="protagonista morto"
@@ -47,6 +48,7 @@
 
       <div class="login-container">
         <h2>Dados do Personagem</h2>
+
         <form action="/login" method="POST">
           <label for="user">Nome</label>
           <input
@@ -60,7 +62,9 @@
           <label for="campo">Escolha uma ocupação:</label>
           <select id="campo" name="campo" required>
             <option value="Cabra da pexte">Cabra da peste</option>
+
             <option value="Espiritualista">Espiritualista</option>
+
             <option value="Atirador">Atirador</option>
           </select>
           <button class="button-login" type="submit">OK</button>
@@ -68,14 +72,12 @@
       </div>
     </div>
 
-    <!-- Tela de transição -->
     <div id="transicao" class="tela">
       <div class="infoInicial">
         <h1 id="carregamento">Carregando...</h1>
       </div>
     </div>
 
-    <!-- Trilha sonora -->
     <audio
       id="trilha-sonora"
       src="/audio/TrilhaSonora.mp4"

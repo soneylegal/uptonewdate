@@ -47,6 +47,7 @@ li {
 
 /* Estilos para a Tela de Morte */
 #tela-morte {
+  background-image: url("/img/fundo_caatinga.png");
   position: fixed;
   top: 0;
   left: 0;
@@ -74,7 +75,7 @@ li {
   background-color: rgba(78, 45, 1, 0.95);
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   border: 2px solid #a0522d;
 }
 

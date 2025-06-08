@@ -11,8 +11,8 @@ function open_connection_and_create_db(callback) {
   const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root'
-    // sem 'database'
+    // password: '123456',
+    // database: 'test'
   });
 
   connection.connect(function(err) {
@@ -84,10 +84,9 @@ function create_table_mapa_fases(con){
   CREATE TABLE IF NOT EXISTS mapa_fases(
   id_local INT NOT NULL PRIMARY KEY, 
   nome_mapa VARCHAR(255),
-  id_fases INT,
   status VARCHAR(255),
-  nome_fases VARCHAR(255),
   fk_id_cenas INT,
+  descricao VARCHAR(255),
   FOREIGN KEY (fk_id_cenas) REFERENCES cenas(id_cenas)
   );
   `
@@ -513,6 +512,120 @@ function inserir_dialogo28(con) {
   con.query(sql, callback_erro);
 }
 
+function inserir_cena1(con) {
+  console.log("Inserindo cena 1...");
+  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+               VALUES (1, NULL, NULL, 'Começo do jogo');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_cena2(con) {
+  console.log("Inserindo cena 2...");
+  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+               VALUES (2, NULL, NULL, 'TUTORIAL');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_cena3(con) {
+  console.log("Inserindo cena 3...");
+  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+               VALUES (3, 'Tutorial concluído. Ganho de: 50 cruzados novos', 50, 'FASE 1 - A JÓIA ROUBADA');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_cena4(con) {
+  console.log("Inserindo cena 4...");
+  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+               VALUES (4, 'Missão da joia concluída. Ganho de 75 cruzados novos', 75, 'FASE 2 - A VOLANTE');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_cena5(con) {
+  console.log("Inserindo cena 5...");
+  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+               VALUES (5, 'Missão da . Ganho de:  Mil cruzados novos', 1000, 'FASE 3 - CIDADE DO SERTÃO');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_cena6(con) {
+  console.log("Inserindo cena 6...");
+  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+               VALUES (6, 'Missão da . Ganho de:  Mil cruzados novo', 9999, 'FASE 4 - FAZENDA DO CORONEL ZÉ RUFINO');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_cena7(con) {
+  console.log("Inserindo cena 7...");
+  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+               VALUES (7, 'Jogo zerado. Você recebeu o título de 'Rei do Cangaço', 99999999, 'FIM DE JOGO');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_cena8(con) {
+  console.log("Inserindo cena 8...");
+  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+               VALUES (8, 'Game over. Você não conseguiu vencer o coronel Zé Rufino, perdeu tudo e virou lembrança no sertão.', 0, 'FIM DE JOGO');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_mapa1(con) {
+  console.log("Inserindo mapa 1...");
+  const sql = `INSERT INTO mapa_fases (id_local, nome_mapa, status, fk_id_cenas, descricao )
+               VALUES (1, '----- Piranhas -----', 'incompleta', 5, 'Cidade mais frequentada pelo cangaço. Possuí centro para abastecimento de mantimentos e ajuda dos moradores locais. Algumas volantes espreitam a cidade.');`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_mapa2(con) {
+  console.log("Inserindo mapa 2...");
+  const sql = `INSERT INTO mapa_fases (id_local, nome_mapa, status, fk_id_cenas, descricao )
+               VALUES (2, '----- Vila -----', 'incompleta', 5,'Centro de moradores. Alguns amigaveis, outros cabuetas.' );`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_mapa3(con) {
+  console.log("Inserindo mapa 3...");
+  const sql = `INSERT INTO mapa_fases (id_local, nome_mapa, status, fk_id_cenas, descricao )
+               VALUES (3, '----- Delegacia ----', 'incompleta', 5,'Delegacia regional, famosa no sertão por ser bastante equipada' );`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_mapa4(con) {
+  console.log("Inserindo mapa 4...");
+  const sql = `INSERT INTO mapa_fases (id_local, nome_mapa, status, fk_id_cenas, descricao )
+               VALUES (4, '----- Mercearia Secos e Molhados -----', 'incompleta', 5,'vende-se ["Água ardente", "Curativos", "Munição", "Parabelo", "Colete", "Anéis do sertão", "Carne de sol"]' );`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_mapa5(con) {
+  console.log("Inserindo mapa 5...");
+  const sql = `INSERT INTO mapa_fases (id_local, nome_mapa, status, fk_id_cenas, descricao )
+               VALUES (5, '----- Igreja Piranhas -----', 'incompleta', 5,'Igreja onde ocorre encontros sociais, acordos e missas. Há boatos que Padre Cicero frequenta o local, curando os cangaçeiros das enfermidades.' );`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_mapa6(con) {
+  console.log("Inserindo mapa 6...");
+  const sql = `INSERT INTO mapa_fases (id_local, nome_mapa, status, fk_id_cenas, descricao )
+               VALUES (6, '----- Caatinga Profunda -----', 'incompleta', 5,'Caatinga perigosa, onde possui bandidos, volantes e outros grupos de cangaceiros.' );`;
+  con.query(sql, callback_erro);
+}
+
+
+function inserir_mapa7(con) {
+  console.log("Inserindo mapa 7...");
+  const sql = `INSERT INTO mapa_fases (id_local, nome_mapa, status, fk_id_cenas, descricao )
+               VALUES (7, '----- Fazenda do Coronel F. de Texeira ------', 'incompleta', 6,'Fazenda pequena e comandada pelo coronel da região. Alguns jagunços e volantes protegendo.' );`;
+  con.query(sql, callback_erro);
+}
+
+function inserir_mapa8(con) {
+  console.log("Inserindo mapa 8...");
+  const sql = `INSERT INTO mapa_fases (id_local, nome_mapa, status, fk_id_cenas, descricao )
+               VALUES (8, '----- Fazenda do Coronel Zé Rufino -----', 'incompleta', 6,'Fazenda rica e farta da região. Extremamente perigosa, comandada pelo inimigo dos cangaceiros, Zé Rufino. Muitos jagunços, volantes e apoio do governo Vargas.' );`;
+  con.query(sql, callback_erro);
+}
+
+
 
 
 
@@ -626,7 +739,21 @@ open_connection_and_create_db(function(conexao) {
   inserir_dialogo26(conexao)
   inserir_dialogo27(conexao)
   inserir_dialogo28(conexao)
-  consulta_habilidade(conexao)
+  //consulta_habilidade(conexao)
+  inserir_cena1(conexao)
+  inserir_cena2(conexao)
+  inserir_cena3(conexao)
+  inserir_cena4(conexao)
+  inserir_cena5(conexao)
+  inserir_cena6(conexao)
+  inserir_cena7(conexao)
+  inserir_cena8(conexao)
+  inserir_mapa1(conexao)
+  inserir_mapa2(conexao)
+  inserir_mapa3(conexao)
+  inserir_mapa4(conexao)
+  inserir_mapa5(conexao)
+  inserir_mapa6(conexao)
   close(conexao);
 });
 

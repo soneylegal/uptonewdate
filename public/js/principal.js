@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
       transicao.classList.remove('ativa');
       telaPrincipal.classList.add('ativa');
-      document.getElementById('trilha-sonora')?.play();
+      // document.getElementById('trilha-sonora')?.play();
     }, 3000);
   });
 

@@ -8,8 +8,8 @@ function delete_database() {
   const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root'
-    // Sem database aqui!
+    // password: 'root',
+    database: 'test' // Conecta diretamente ao banco do projeto
   });
 
   con.connect(function(err) {
@@ -20,13 +20,13 @@ function delete_database() {
 
     console.log("Conectado ao MySQL.");
 
-    const sql = "DROP DATABASE IF EXISTS dbprojeto";
+    const sql = "DROP DATABASE IF EXISTS test";
 
     con.query(sql, function(err, results) {
       if (err) {
         console.error("Erro ao apagar o banco:", err);
       } else {
-        console.log("Banco de dados 'dbprojeto' apagado com sucesso.");
+        console.log("Banco de dados 'test' apagado com sucesso.");
       }
 
       con.end(function(err) {

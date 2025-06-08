@@ -1,35 +1,36 @@
+// public/js/arsenal.js
 
 class Habilidades {
     #nome
     #dano
     #falha
-    constructor(nome, dano, falha){
-    this.#nome = nome,
-    this.#dano = dano,
-    this.#falha = falha
+    constructor(nome, dano, falha) {
+        this.#nome = nome,
+            this.#dano = dano,
+            this.#falha = falha
     }
-    get nome(){
-    return this.#nome
+    get nome() {
+        return this.#nome
     }
-    get dano(){
-    return this.#dano
+    get dano() {
+        return this.#dano
     }
-    get falha(){
-    return this.#falha
+    get falha() {
+        return this.#falha
     }
 }
 
-class CaixaItens{
+class CaixaItens {
     #itens
-    constructor(){
+    constructor() {
         this.#itens = []
     }
 
-    receberItem(n){
+    receberItem(n) {
         return this.#itens[n]
     }
 
-    mudarItem(n, valor){
+    mudarItem(n, valor) {
         this.#itens[n] = valor;
     }
 
@@ -41,4 +42,4 @@ class CaixaItens{
     }
 }
 
-module.exports = {Habilidades , CaixaItens};
+module.exports = { Habilidades, CaixaItens };

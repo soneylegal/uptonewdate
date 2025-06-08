@@ -2,7 +2,9 @@
 
 
 const mysql = require('mysql2');
-const { data_para_str, imprime_contato } = require('./util');
+
+// Não tenho acesso, então comentei
+// const { data_para_str, imprime_contato } = require('./util');
 
 
 function open_connection_and_create_db(callback) {
@@ -12,7 +14,7 @@ function open_connection_and_create_db(callback) {
     host: 'localhost',
     user: 'root',
     // password: '123456',
-    // database: 'test'
+    database: 'test'
   });
 
   connection.connect(function(err) {
@@ -22,7 +24,7 @@ function open_connection_and_create_db(callback) {
     }
     console.log('Conectado ao MySQL. ID: ' + connection.threadId);
 
-    const sql_create_db = `CREATE DATABASE IF NOT EXISTS dbprojeto`;
+    const sql_create_db = `CREATE DATABASE IF NOT EXISTS test`;
 
     connection.query(sql_create_db, function(err) {
       if (err) {
@@ -30,15 +32,15 @@ function open_connection_and_create_db(callback) {
         return;
       }
 
-      console.log("Banco de dados 'dbprojeto' criado/verificado.");
+      console.log("Banco de dados 'test' criado/verificado.");
 
-      connection.changeUser({ database: 'dbprojeto' }, function(err) {
+      connection.changeUser({ database: 'test' }, function(err) {
         if (err) {
           console.error('Erro ao mudar para o banco: ' + err);
           return;
         }
 
-        console.log("Conectado ao banco 'dbprojeto'");
+        console.log("Conectado ao banco 'test'");
         callback(connection);
       });
     });
@@ -514,56 +516,56 @@ function inserir_dialogo28(con) {
 
 function inserir_cena1(con) {
   console.log("Inserindo cena 1...");
-  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+  const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
                VALUES (1, NULL, NULL, 'Começo do jogo');`;
   con.query(sql, callback_erro);
 }
 
 function inserir_cena2(con) {
   console.log("Inserindo cena 2...");
-  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+  const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
                VALUES (2, NULL, NULL, 'TUTORIAL');`;
   con.query(sql, callback_erro);
 }
 
 function inserir_cena3(con) {
   console.log("Inserindo cena 3...");
-  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+  const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
                VALUES (3, 'Tutorial concluído. Ganho de: 50 cruzados novos', 50, 'FASE 1 - A JÓIA ROUBADA');`;
   con.query(sql, callback_erro);
 }
 
 function inserir_cena4(con) {
   console.log("Inserindo cena 4...");
-  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+  const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
                VALUES (4, 'Missão da joia concluída. Ganho de 75 cruzados novos', 75, 'FASE 2 - A VOLANTE');`;
   con.query(sql, callback_erro);
 }
 
 function inserir_cena5(con) {
   console.log("Inserindo cena 5...");
-  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+  const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
                VALUES (5, 'Missão da . Ganho de:  Mil cruzados novos', 1000, 'FASE 3 - CIDADE DO SERTÃO');`;
   con.query(sql, callback_erro);
 }
 
 function inserir_cena6(con) {
   console.log("Inserindo cena 6...");
-  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+  const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
                VALUES (6, 'Missão da . Ganho de:  Mil cruzados novo', 9999, 'FASE 4 - FAZENDA DO CORONEL ZÉ RUFINO');`;
   con.query(sql, callback_erro);
 }
 
 function inserir_cena7(con) {
   console.log("Inserindo cena 7...");
-  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+  const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
                VALUES (7, 'Jogo zerado. Você recebeu o título de 'Rei do Cangaço', 99999999, 'FIM DE JOGO');`;
   con.query(sql, callback_erro);
 }
 
 function inserir_cena8(con) {
   console.log("Inserindo cena 8...");
-  const sql = `INSERT INTO cenas (id_cenas, descriacao, ganho, nome_cena)
+  const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
                VALUES (8, 'Game over. Você não conseguiu vencer o coronel Zé Rufino, perdeu tudo e virou lembrança no sertão.', 0, 'FIM DE JOGO');`;
   con.query(sql, callback_erro);
 }

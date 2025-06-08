@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="/img/image.png" type="image/x-icon" />
   </head>
   <body>
-    <!-- Botão para abrir o menu -->
     <div id="menuInfo">
       <nav id="navMenu" aria-label="Menu de informações">
         <select id="campo" name="campo" required>
@@ -25,7 +24,7 @@
         <ul>
           <li>Nome: <%= prota.nome %></li>
           <li>Ocupação: <%= prota.ocupacao %></li>
-          <li>Vida: <%= prota.vida %></li>
+          <li id="vida-display">Vida: <%= prota.vida %></li>
           <li>Armadura: <%= prota.armadura %></li>
           <li>Dinheiro: <%= prota.dinheiro %></li>
           <li>Habilidade 1: <%= prota.habilidade1.nome %></li>
@@ -35,9 +34,7 @@
           <li>Dano Habilidade 2: <%= prota.habilidade2.dano %></li>
           <li>Falha Habilidade 2: <%= prota.habilidade2.falha %></li>
         </ul>
-        <button class="button-continue">Jogar</button>
-        <!--botão que leva à tela de morte -->
-        <button class="morte">Você morreu</button>
+        <button class="button-continue" id="jogar-btn">Jogar</button>
       </div>
 
       <div id="ceu"></div>
@@ -59,12 +56,25 @@
         />
       </div>
     </div>
-    <!-- Trilha sonora -->
+
+    <div id="tela-morte" class="oculta">
+      <div class="conteudo-morte">
+        <h1>Você Morreu!</h1>
+        <p>Sua jornada chegou ao fim.</p>
+        <button id="reiniciar-btn">Tentar Novamente</button>
+        <button id="menu-principal-btn">Menu Principal</button>
+      </div>
+    </div>
     <audio
       id="trilha-sonora"
       src="/audio/TrilhaSonora.mp4"
       loop
       autoplay
     ></audio>
+
+    <script>
+      // const prota = <%- JSON.stringify(prota) %>;
+    </script>
+    <script src="/js/script.js"></script>
   </body>
 </html>

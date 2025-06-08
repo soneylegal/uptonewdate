@@ -1,8 +1,14 @@
+// app.js
+
 const express = require("express");
 const path = require("path");
+const mysql = require('mysql2'); // Importar o mysql2
 
-const { Protagonista } = require("./public/js/protagonista");
-const { Habilidades, CaixaItens } = require("./public/js/arsenal");
+// As classes Protagonista, Habilidades, CaixaItens devem estar disponíveis no backend
+// E estão sendo importadas corretamente para uso no servidor.
+const { Protagonista } = require("./public/js/protagonista"); // OK
+const { Habilidades, CaixaItens } = require("./public/js/arsenal"); // OK
+
 
 const app = express();
 const PORT = 3000;
@@ -13,67 +19,129 @@ app.set("views", path.join(__dirname, "views"));
 
 // Middlewares
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
+app.use(express.json()); // Para parsear JSON no corpo das requisições POST
 app.use(express.urlencoded({ extended: true }));
+
+// --- Funções de Conexão com o Banco de Dados ---
+function getDbConnection(callback) {
+  const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    // password: '123456', // Se você tem senha, descomente e adicione
+    database: 'test' // Conecta diretamente ao banco do projeto
+  });
+
+  connection.connect(function (err) {
+    if (err) {
+      console.error('Erro na conexão com o banco de dados test: ' + err.stack);
+      return callback(err);
+    }
+    console.log('Conectado ao MySQL - test. ID: ' + connection.threadId);
+    callback(null, connection);
+  });
+}
+
 // Rota para página principal
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "principal.html"));
 });
 
-// Rota para login e criação do personagem
+// Rota para login e criação/carregamento do personagem
 app.post("/login", (req, res) => {
   const { user, campo } = req.body;
 
-  const pistola = new Habilidades("pistola", 20, 2);
-  const espingarda = new Habilidades("espingarda", 30, 6);
-  const soco = new Habilidades("soco", 15, 2);
-  const peixera = new Habilidades("peixeira", 30, 4);
-  const padinCico = new Habilidades("em nome de padin ciço", 60, 10);
-  const penitencia = new Habilidades("penitencia", 40, 4);
-
-  const caixa = new CaixaItens();
-  caixa.adicionarItem("cantil de água");
-  caixa.adicionarItem("pistola velha");
-  caixa.adicionarItem("faca enferrujada");
-
-  let prota;
-
-  switch (campo) {
-    case "Atirador":
-      prota = new Protagonista(user, campo, 120, 5, 10, 50, pistola, espingarda, 10, caixa);
-      break;
-    case "Cabra da pexte":
-      prota = new Protagonista(user, campo, 160, 10, 4, 50, soco, peixera, 10, caixa);
-      break;
-    case "Espiritualista":
-      prota = new Protagonista(user, campo, 120, 7, 2, 50, padinCico, penitencia, 10, caixa);
-      break;
-    default:
-      return res.send("Ocupação inválida.");
-  }
-
-  res.render("infoprota", {
-    prota: {
-      nome: prota.nome,
-      ocupacao: prota.ocupacao,
-      vida: prota.vida,
-      armadura: prota.armadura,
-      dinheiro: prota.dinheiro,
-      habilidade1: {
-        nome: prota.habilidade1.nome,
-        dano: prota.habilidade1.dano,
-        falha: prota.habilidade1.falha
-      },
-      habilidade2: {
-        nome: prota.habilidade2.nome,
-        dano: prota.habilidade2.dano,
-        falha: prota.habilidade2.falha
-      }
+  getDbConnection((err, con) => {
+    if (err) {
+      return res.status(500).send('Erro ao conectar ao banco de dados.');
     }
+
+    const sql = `
+            SELECT p.id_personagem, p.nome, p.ocupacao, p.vida, p.armadura, p.dinheiro,
+                   h1.nome_hab AS habilidade1_nome, h1.dano AS habilidade1_dano, h1.falha AS habilidade1_falha,
+                   h2.nome_hab AS habilidade2_nome, h2.dano AS habilidade2_dano, h2.falha AS habilidade2_falha
+            FROM personagem p
+            LEFT JOIN habilidade h1 ON p.fk_id_habilidade1 = h1.id_habilidade
+            LEFT JOIN habilidade h2 ON p.fk_id_habilidade2 = h2.id_habilidade
+            WHERE p.id_personagem = 1;
+        `;
+
+    con.query(sql, (queryErr, results) => {
+      con.end();
+
+      if (queryErr) {
+        console.error('Erro ao buscar dados do protagonista: ' + queryErr);
+        return res.status(500).send('Erro ao carregar dados do personagem.');
+      }
+
+      let protaData;
+      if (results && results.length > 0) {
+        const row = results[0];
+        protaData = {
+          nome: row.nome,
+          ocupacao: row.ocupacao,
+          vida: row.vida !== null ? row.vida : 160,
+          armadura: row.armadura,
+          dinheiro: row.dinheiro,
+          habilidade1: {
+            nome: row.habilidade1_nome,
+            dano: row.habilidade1_dano,
+            falha: row.habilidade1_falha
+          },
+          habilidade2: {
+            nome: row.habilidade2_nome,
+            dano: row.habilidade2_dano,
+            falha: row.habilidade2_falha
+          }
+        };
+        console.log("Protagonista carregado do DB:", protaData.nome, "Vida:", protaData.vida);
+
+      } else {
+        console.warn("Protagonista com ID 1 não encontrado no DB. Usando dados padrão.");
+        protaData = {
+          nome: user || "Cangaceiro",
+          ocupacao: campo || "Cabra da pexte",
+          vida: 160,
+          armadura: 10,
+          dinheiro: 50,
+          habilidade1: { nome: "Soco", dano: 15, falha: 2 },
+          habilidade2: { nome: "Peixeira", dano: 30, falha: 4 }
+        };
+      }
+
+      res.render("infoprota", { prota: protaData });
+    });
   });
 });
 
-// Inicia o servidor
+app.post('/api/atualizar-vida-protagonista', (req, res) => {
+  const { vidaAtual } = req.body;
+  const protagonistaId = 1;
+
+  if (typeof vidaAtual === 'undefined' || vidaAtual < 0) {
+    return res.status(400).json({ message: 'Vida inválida fornecida.' });
+  }
+
+  getDbConnection((err, con) => {
+    if (err) {
+      return res.status(500).json({ message: 'Erro ao conectar ao banco de dados.' });
+    }
+
+    const sql = `UPDATE personagem SET vida = ? WHERE id_personagem = ?`;
+    con.query(sql, [vidaAtual, protagonistaId], (queryErr, result) => {
+      con.end();
+
+      if (queryErr) {
+        console.error('Erro ao atualizar vida no DB: ' + queryErr);
+        return res.status(500).json({ message: 'Erro interno ao salvar vida.' });
+      }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Protagonista não encontrado para atualização.' });
+      }
+      res.json({ message: 'Vida do protagonista atualizada com sucesso!', newLife: vidaAtual });
+    });
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

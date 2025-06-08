@@ -1,3 +1,5 @@
+// public/js/personagem.js
+
 class Personagem {
     #nome;
     #ocupacao;
@@ -34,7 +36,7 @@ class Personagem {
 
     set vida(novaVida) {
         if (novaVida >= 0) this.#vida = novaVida;
-        else console.log("Encerrar jogo");
+        else console.log("Encerrar jogo"); // Esta linha será chamada se a vida ficar negativa no backend
     }
 
     levarDano(dano) {

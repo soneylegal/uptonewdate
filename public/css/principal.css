@@ -22,12 +22,35 @@ body {
 }
 
 /* Cabeçalho */
-h1 {
+#titulo {
   font-family: "Press Start 2P", cursive;
   color: rgb(252, 245, 245);
   font-size: 1.2rem;
   margin-bottom: 30px;
 }
+
+/* carregamento texto */
+#carregamento {
+  font-family: "Press Start 2P", cursive;
+  color: rgb(252, 245, 245);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+@keyframes onda {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+#carregamento span {
+  display: inline-block;
+  animation: onda 0.2s ease-in-out infinite;
+}
+
 
 /* Tela principal do jogo */
 #tela-principal {
@@ -53,6 +76,8 @@ h1 {
 }
 #btn-iniciar:hover {
   background-color: rgb(232, 220, 100);
+  color: black;
+  transform: scale(1.05);
 }
 
 /* Céu e chão */
@@ -147,6 +172,13 @@ label {
   color: white;
   padding: 7px;
   border-radius: 7px;
+}
+
+.button-login:hover,
+.button-continue:hover {
+  background-color: #333;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 /* Tela de transição */

@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "Projeto_final_Pweb_POO_BD - Continuação do projeto de RPG",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
     "nodemon": "^3.1.10",
     "prompt-sync": "^4.2.0",
@@ -24,6 +25,5 @@
   "bugs": {
     "url": "https://github.com/soneylegal/updates/issues"
   },
-  "homepage": "https://github.com/soneylegal/updates#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/soneylegal/updates#readme"
 }

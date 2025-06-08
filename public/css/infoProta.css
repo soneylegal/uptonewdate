@@ -1,5 +1,5 @@
 #info-geral-prota {
-  background-image: url("/img/fundo_caatinga (1).png");
+  background-image: url("/img/fundo_caatinga.png");
   background-size: cover;           
   background-position: center;      
   background-repeat: no-repeat;     
@@ -10,6 +10,7 @@
   justify-content: center;          
   min-height: 100vh;               
 }
+
 li {
   margin: 7px;
   font-family: 'Courier New', Courier, monospace;
@@ -29,4 +30,27 @@ li {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.button-continue {
+  background-color: #6b3400; /* Verde */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+}
+.button-continue:hover {
+  background-color: #8b4c00; /* Verde mais claro */
+}
+
+.protagonista {
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  top: 0;
+  width: 260px;
+  height: auto;
+  display: none;
 }

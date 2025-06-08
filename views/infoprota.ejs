@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Informações</title>
+  <link rel="stylesheet" href="/css/infoProta.css">
+  <link rel="stylesheet" href="/css/principal.css">
+  <link rel="shortcut icon" href="/img/image.png" type="image/x-icon">
+</head>
+<body>
+ <!-- Botão para abrir o menu -->
+  <div id="menuInfo">
+  <nav id="navMenu" aria-label="Menu de informações">
+    <select id="campo" name="campo" required>
+      <option value="inicio"> <h4 id="Menu">Menu</h4></option>
+      <option value="caixa">📦 Caixa de Itens</option>
+      <option value="dinheiro">💰 Dinheiro</option>
+    </select>
+  </nav>
+</div>
+
+  <div id="info-geral-prota" class="tela-ativa">
+    <div class="info-geral">
+      <h2 class="info-prota">Informações do personagem</h2>
+      <ul>
+        <li>Nome: <%= prota.nome %></li>
+        <li>Ocupação: <%= prota.ocupacao %></li>
+        <li>Vida: <%= prota.vida %></li>
+        <li>Armadura: <%= prota.armadura %></li>
+        <li>Dinheiro: <%= prota.dinheiro %></li>
+        <li>Habilidade 1: <%= prota.habilidade1.nome %></li>
+        <li>Dano Habilidade 1: <%= prota.habilidade1.dano %></li>
+        <li>Falha Habilidade 1: <%= prota.habilidade1.falha %></li>
+        <li>Habilidade 2: <%= prota.habilidade2.nome %></li>
+        <li>Dano Habilidade 2: <%= prota.habilidade2.dano %></li>
+        <li>Falha Habilidade 2: <%= prota.habilidade2.falha %></li>
+      </ul>
+      <button class="button-continue">Jogar</button>
+    </div>
+
+    <div id="ceu"></div>
+    <div id="chao">
+      <img src="/img/protagonista_relaxado.png" class="protagonista relaxado" alt="protagonista relaxado">
+      <img src="/img/protagonista_ataque.png" class="protagonista ataque" alt="protagonista atacando">
+      <img src="/img/protagonista_rip.png" class="protagonista morto" alt="protagonista morto">
+    </div>
+  </div>
+</body>
+</html>

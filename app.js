@@ -56,7 +56,7 @@ app.post("/login", (req, res) => {
       FROM personagem p
       LEFT JOIN habilidade h1 ON p.fk_id_habilidade1 = h1.id_habilidade
       LEFT JOIN habilidade h2 ON p.fk_id_habilidade2 = h2.id_habilidade
-      WHERE p.id_personagem = ?;
+      WHERE p.id_personagem = 1;
     `;
 
     con.query(selectSql, [protagonistaId], (selectErr, results) => {

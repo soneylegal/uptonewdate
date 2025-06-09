@@ -22,7 +22,7 @@ function getDbConnection(callback) {
   const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: 'SUA_SENHA_AQUI',
+    password: 'root',
     database: 'test'
   });
 

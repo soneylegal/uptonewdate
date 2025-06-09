@@ -26,7 +26,7 @@ class Protagonista extends Personagem {
     //     // Lógica específica para o protagonista no backend
     //     super.levarDano(dano); // Chama o método da classe pai
     //     // console.log(`Protagonista ${this.nome} levou dano. Vida atual: ${this.vida}`);
-    // }
+    // }160
 }
 
 module.exports = { Protagonista };

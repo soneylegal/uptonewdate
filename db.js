@@ -5,7 +5,7 @@ function getDbConnection(callback) {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        // password: '123456', // Se você tem uma senha, descomente e adicione
+        password: 'root', // Se você tem uma senha, descomente e adicione
         database: 'test' // Conecta diretamente ao banco de dados do projeto
     });
 

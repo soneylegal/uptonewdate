@@ -12,7 +12,7 @@ function open_connection_and_create_db(callback) {
   const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: '123456',
+    password: 'root',
     database: 'test'
   });
 
@@ -170,7 +170,7 @@ function inserir_itens1(con) {
 function inserir_personagem1(con) {
   console.log("Inserindo personagem 1...");
   const sql = `INSERT INTO personagem (id_personagem, nome, vida, dinheiro, ocupacao, armadura, velocidade, reputacao, personagem_tipo, fk_id_item, fk_id_habilidade1, fk_id_habilidade2 )
-                VALUES (1, 'personagem', 100, 0, 'Ocupação de Teste', 0, 0, 0, 'jogador', 1,NULL,NULL);`;
+                VALUES (1, NULL, NULL, 0, NULL, 0, 0, 0, 'jogador', 1,NULL,NULL);`;
   con.query(sql, callback_erro);
 }
 
@@ -558,7 +558,7 @@ function inserir_cena6(con) {
 function inserir_cena7(con) {
   console.log("Inserindo cena 7...");
   const sql = `INSERT INTO cenas (id_cenas, descricao, ganho, nome_cena)
-               VALUES (7, 'Jogo zerado. Você recebeu o título de 'Rei do Cangaço', 99999999, 'FIM DE JOGO');`;
+               VALUES (7, 'Jogo zerado. Você recebeu o título de Rei do Cangaço', 99999999, 'FIM DE JOGO');`;
   con.query(sql, callback_erro);
 }
 

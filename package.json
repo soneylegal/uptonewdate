@@ -26,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/soneylegal/updates/issues"
   },
-  "homepage": "https://github.com/soneylegal/updates#readme"
+  "homepage": "https://github.com/soneylegal/updates#readme",
+  "devDependencies": {}
 }
